@@ -1,6 +1,7 @@
 {
+  "navigationBarTitleText": "手动创建第一个",
   "usingComponents": {
     "cloud-tip-modal": "/components/cloudTipModal/index"
   },
-  "navigationBarBackgroundColor": "#fff"
+  "navigationBarBackgroundColor": "#663399"
 }

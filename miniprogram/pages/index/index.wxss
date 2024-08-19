@@ -221,13 +221,14 @@ page {
 
 .container{
   height: 90vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
 }
 
-.container button{
+.button_1{
   width: 80%;
   margin-top: -10%;
 }
@@ -238,15 +239,15 @@ page {
   align-items: center;
 }
 
-.showUserInfo text{
+.showUserName{
   margin-top: 10%;
 }
 
-image{
+.showUserInfo image{
   width: 300rpx;
   border-radius: 50%;
 }
 
-text{
+/* text{
   font-size: 50rpx;
-}
+} */
