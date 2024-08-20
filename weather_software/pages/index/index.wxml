@@ -1,0 +1,58 @@
+<!--index.wxml-->
+
+<div class="container">
+  <picker mode="region" bindchange="regionChange">
+    <view>{{region}}</view>
+  </picker>
+  <text>{{now.temp}}℃ {{now.text}}</text>
+  <image src="/images/weather_icon/{{now.icon}}.svg" mode="widthFix"></image>
+  <view class="detail">
+    <view class="bar">
+      <view class="box">湿度</view>
+      <view class="box">气压</view>
+      <view class="box">能见度</view>
+    </view>
+    <view class="bar">
+      <view class="box">{{now.humidity}} %</view>
+      <view class="box">{{now.pressure}} hpa</view>
+      <view class="box">{{now.vis}} km</view>
+    </view>
+    <view class="bar">
+      <view class="box">风向</view>
+      <view class="box">风速</view>
+      <view class="box">风力</view>
+    </view>
+    <view class="bar">
+      <view class="box">{{now.windDir}}</view>
+      <view class="box">{{now.windScale}} km/h</view>
+      <view class="box">{{now.windSpeed}} 级</view>
+    </view>
+  </view>
+</div>
+
+<!-- <scroll-view class="scrollarea" scroll-y type="list">
+  <view class="container">
+    <view class="userinfo">
+      <block wx:if="{{canIUseNicknameComp && !hasUserInfo}}">
+        <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+          <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+        </button>
+        <view class="nickname-wrapper">
+          <text class="nickname-label">昵称</text>
+          <input type="nickname" class="nickname-input" placeholder="请输入昵称" bind:change="onInputChange" />
+        </view>
+      </block>
+      <block wx:elif="{{!hasUserInfo}}">
+        <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
+        <view wx:else> 请使用2.10.4及以上版本基础库 </view>
+      </block>
+      <block wx:else>
+        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      </block>
+    </view>
+    <view class="usermotto">
+      <text class="user-motto">{{motto}}</text>
+    </view>
+  </view>
+</scroll-view> -->
