@@ -4,6 +4,8 @@ xiao_software: 简单的微信测试小程序
 
 weather_software: 简单的获取实时天气小程序
 
+rubbish_software_1: 学习云开发之垃圾分类小程序
+
 ---
 
 本仓库用于微信小程序开发
