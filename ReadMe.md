@@ -6,10 +6,13 @@
 - weather_software: 简单的获取实时天气小程序
 
 
-- rubbish_software_1: 学习云开发之垃圾分类小程序
-- media_software: 媒体API之口述校史小程序
+- rubbish_software_1: 学习云开发之垃圾分类小程序（附原 gitee 开源地址[垃圾分类小程序](https://gitee.com/xxwan/garbage-sorting-applet)
 
-附原 gitee 开源地址[垃圾分类小程序](https://gitee.com/xxwan/garbage-sorting-applet)
+
+- media_software: 媒体API之口述校史小程序
+- news_software: 高校新闻网小程序
+- self_software: 个人小程序（ing）
+- selfTry: 一些小组件 or 练习
 
 ---
 

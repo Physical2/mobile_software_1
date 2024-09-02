@@ -1,0 +1,45 @@
+<view class="container">
+  <button bindtap="togglePicker">{{isPickerEnabled ? 'ON' : 'OFF'}}</button>
+
+  <picker mode="multiSelector" range="{{timeArray}}" value="{{timeIndex}}" bindchange="bindTimeChange" disabled="{{!isPickerEnabled}}" style="{{isPickerEnabled ? '' : 'color:gray;'}}">
+    <view class="picker">
+      {{isPickerEnabled ? '选择的时间：' + timeDisplay : '时间选择已禁用'}}
+    </view>
+  </picker>
+  <view> -----------------这里是分割线---------------------
+  </view>
+  <!-- <button bindtap="showPicker">{{currentCategory}}</button> -->
+  <picker mode="selector" range="{{categories}}" bindchange="bindCategoryChange" value="{{selectedIndex}}">
+    <view class="picker">
+      当前分类：{{currentCategory}}
+    </view>
+  </picker>
+  
+  <block wx:if="{{currentCategory === '全部待办'}}">
+    <movable-area class="sortable-list">
+      <block wx:for="{{category1Data}}" wx:key="index">
+        <movable-view direction="vertical" data-index="{{index}}" bindchange="handleSort" bindtouchend="confirmSort" class="sortable-item">
+          <view>{{item.name}}</view>
+        </movable-view>
+      </block>
+    </movable-area>
+  </block>
+  <view> -----------------这里是分割线---------------------
+  </view>
+  <!-- <picker mode="color" bindchange="onColorChange">
+    <view class="picker">
+      当前选择的颜色: <text>{{selectedColor}}</text>
+    </view>
+  </picker> -->
+  <view class="color-picker">
+    <view class="color-sample" style="background-color: {{selectedColor}}" bindtap="showColorPicker"></view>
+    <text>当前选择的颜色: {{selectedColor}}</text>
+  </view>
+
+  <view wx:if="{{showPicker}}" class="color-options">
+    <view wx:for="{{colors}}" wx:key="index" class="color-option" style="background-color: {{item}}" bindtap="selectColor"></view>
+  </view>
+
+  <!-- <button bindtap="applyColor">应用颜色</button> -->
+  
+</view>

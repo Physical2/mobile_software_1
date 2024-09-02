@@ -1,0 +1,40 @@
+.operation-wrap {
+  margin: 30px;
+  text-align: center;
+}
+
+.TD_content{
+  display: flex;
+  flex-direction: row;
+  border: 1px solid springgreen;
+  height: 10%;
+}
+
+.TD_finish{
+  width: 7%;
+  border: 1px solid black;
+}
+
+.TD_time{
+  width: 17%;
+  border: 1px solid rgb(21, 54, 161);
+  margin-left: 2%;
+}
+
+.TD_title{
+  width: 46%;
+  margin-left: 2%;
+
+}
+
+.TD_change{
+  width: 10%;
+  border: 1px solid black;
+  
+}
+
+.TD_delete{
+  width: 10%;
+  border: 1px solid black;
+  margin-left: 3%;
+}

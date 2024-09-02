@@ -1,0 +1,23 @@
+<!--pages/mine/mine.wxml-->
+<view class="body">
+  <view class="user_total" open-type='getUserProfile' bindtap='getUserProfile'>
+    <image class="user_avatar" src='{{userInfo.avatarUrl}}' mode='widthFix'/>
+    <view class="user_info">
+      <view class="user_name">{{userInfo.nickName}}</view>
+      <view class="user_signature">去写一句自己喜欢的话吧~</view>
+    </view>
+  </view>
+
+  <view class="settings">
+    <view class="set_info" >
+      修改签名
+    </view>
+    <view class="set_style">
+      <view>修改主题颜色</view>
+      <view>当前主题为： 白色</view>
+    </view>
+    <view class="aboutUs">
+      关于我们
+    </view>
+  </view>
+</view>

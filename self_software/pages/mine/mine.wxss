@@ -1,0 +1,75 @@
+
+.body{
+  /* border: 1px solid black; */
+  width: 95%;
+  height: 100vh;
+  margin-left: 2.5%;
+  /* display: flex; */
+  /* flex-direction: column; */
+}
+
+.user_total{
+  /* border: 1px solid rgb(36, 64, 187); */
+  display: flex;
+  flex-direction: row;
+  height: 20%;
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 5%;
+}
+
+.user_avatar{
+  /* border: 1px solid rgb(36, 64, 187); */
+  width: 25%;
+  height: 60%;
+  border-radius: 50%;
+}
+
+.user_info{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin-left: 5%;
+}
+
+.user_name{
+  /* border: 1px solid rgb(36, 64, 187); */
+  height: 25%;
+  margin-top: 5%;
+  font-size: 7vw;
+}
+
+.user_signature{
+  /* border: 1px solid rgb(26, 183, 223); */
+  margin-top: 10%;
+  height: 40%;
+  font-size: 4.5vw;
+}
+
+
+.settings{
+  border: 1px solid rgb(41, 187, 36);
+  height: 50%;
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 10%;
+}
+
+.settings view{
+  border: 1px solid rgb(197, 33, 170);
+  height: 20%;
+  margin-top: 5%;
+  /* text-align: center; */
+}
+
+.set_info{
+
+}
+
+.set_style view{
+  border: none;
+}
+
+.aboutUs{
+
+}

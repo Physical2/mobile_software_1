@@ -1,0 +1,38 @@
+<!--pages/todo/todo.wxml-->
+<view class="body">
+  <view class="signature">状态签名</view>
+  <view class="head">
+    <view class="TD_label">全部待办</view>
+    <view class="TD_add"> + 添加</view>
+  </view>
+  <view class="TD_list">
+    <view class="TD_timeHead">2024/09/01</view>
+    <view class="TD_content">
+      <view wx:if="!{{isTodo}}" class="TD_finish">
+        <image src="/Images/todo-no.png" ></image>
+      </view>
+      <view wx:else="{{isTodo}}" class="TD_finish">
+        <image src="/Images/todo-yes.png"></image>
+      </view>
+      <view class="TD_time">{{todoTime}}</view>
+      <view class="TD_title">写小程序</view>
+      <!-- <view class="TD_change">修改</view> -->
+      <view class="TD_delete">删除</view>
+    </view>
+
+    <view class="TD_timeHead">2024/08/31</view>
+    <view class="TD_content">
+      <view wx:if="!{{isTodo}}" class="TD_finish">
+        <image src="/Images/todo-no.png"></image>
+      </view>
+      <view wx:else="{{isTodo}}" class="TD_finish">
+        <image src="/Images/todo-yes.png"></image>
+      </view>
+      <view class="TD_time">{{todoTime}}</view>
+      <view class="TD_title">上课</view>
+      <!-- <view class="TD_change">修改</view> -->
+      <view class="TD_delete">删除</view>
+    </view>
+
+  </view>
+</view>
