@@ -11,6 +11,7 @@
 
 - media_software: 媒体API之口述校史小程序
 - news_software: 高校新闻网小程序
+- games_software: 推箱子小游戏
 - self_software: 个人小程序（ing）
 - selfTry: 一些小组件 or 练习
 
