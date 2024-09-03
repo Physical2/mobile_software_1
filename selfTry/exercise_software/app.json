@@ -1,7 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/index1/index1"
+    "pages/index1/index1",
+    "pages/index2/index2"
   ],
 
   "tabBar":{
@@ -14,6 +15,11 @@
       {
         "pagePath": "pages/index1/index1",
         "text":  "日历组件"
+
+      },
+      {
+        "pagePath": "pages/index2/index2",
+        "text":  "云开发"
 
       }
     ],

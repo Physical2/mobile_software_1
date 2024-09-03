@@ -1,0 +1,8 @@
+<view class="container">
+  <view wx:for="{{todoList}}" wx:key="id">
+    <text>{{item.name}}</text>
+    <text>{{item.add_time}}</text>
+    <!-- <text>{{item.dueDate}}</text> -->
+    <!-- <text>{{item.status}}</text> -->
+  </view>
+</view>

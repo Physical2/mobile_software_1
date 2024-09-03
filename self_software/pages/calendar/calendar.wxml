@@ -9,13 +9,22 @@
   </view>
   
     <view class="TD_list">
-      <view class="TD_timeHead">{{  chooseDate}}</view>
-      <view class="TD_content">
-        <view class="TD_finish">⭕</view>
-        <view class="TD_time">{{todoTime}}</view>
-        <view class="TD_title">写小程序</view>
-        <view class="TD_change">修改</view>
-        <view class="TD_delete">删除</view>
+      <view class="TD_timeHead">{{ chooseDate}}</view>
+      <view wx:if="{{!hasTodo}}">
+        这天好像没有 ddl 哦~
+      </view>
+      <view wx:if="{{hasTodo}}" class="TD_content" wx:for="{{filteredList}}" wx:key="id">
+        <view wx:if="!{{item.status}}" class="TD_finish">
+          <image src="/Images/todo-no.png" ></image>
+        </view>
+        <view wx:else="{{item.status}}" class="TD_finish">
+          <image src="/Images/todo-yes.png"></image>
+        </view>
+
+        <view class="TD_time">{{item.formattedDate}}</view>
+        <view class="TD_title">{{item.title}}</view>
+        <!-- <view class="TD_change">修改</view> -->
+        <view class="TD_delete" bind:tap="deleteTodo" data-id="{{item.id}}">删除</view>
       </view>
     </view>
     <view class="TD_add"></view>

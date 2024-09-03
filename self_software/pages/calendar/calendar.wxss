@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: row;
   border: 1px solid springgreen;
-  height: 10%;
+  height: 13%;
 }
 
 .TD_finish{
@@ -15,8 +15,13 @@
   border: 1px solid black;
 }
 
+.TD_finish image{
+  width: 100%;
+  height: 100%;
+}
+
 .TD_time{
-  width: 17%;
+  width: 20%;
   border: 1px solid rgb(21, 54, 161);
   margin-left: 2%;
 }

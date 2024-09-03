@@ -22,8 +22,12 @@ Page({
     // 存储已经获取过的日期
     dateListMap: [],
     chooseDate: '',
-    todoTime: '13:45\n14:45'
+    // todoTime: '13:45\n14:45',
+    filteredList: [],
+    hasTodo: true
   },
+
+  
   // 获取日期数据，通常用来请求后台接口获取数据
   getDateList({ detail }) {
     // 检查是否已经获取过该月的数据
@@ -48,10 +52,11 @@ Page({
   // 日期改变的回调
   selectDay({ detail }) {
     console.log(detail, 'selectDay detail');
-    const {month, day} = detail;
+    const {year, month, day} = detail;
     const formattedDate = `${month}月${day}日`;
     console.log('拼接好的选中日期', formattedDate);
-    // return formattedDate;
+
+    this.searchTodoByTime(year, month, day);
     this.setData({
       chooseDate: formattedDate,
     });
@@ -65,4 +70,57 @@ Page({
       changeTime: '2024/9/1',
     });
   },
+
+  searchTodoByTime: function(year, month, day){
+    wx.cloud.callFunction({
+      name: 'searchTodoByTime',
+      data: {
+        year: year,
+        month: month,
+        day: day
+      },
+      success: res => {
+        if (res.result.success) {
+          console.log('Filtered todos:', res.result.data);
+          // 处理筛选后的待办事件数据
+          const formattedData = res.result.data.map(todo => {
+            const endTime = new Date(todo.endTime); 
+            const formattedDate = `${endTime.getMonth() + 1}/${endTime.getDate()} ${String(endTime.getHours()).padStart(2, '0')}:${String(endTime.getMinutes()).padStart(2, '0')}`;
+            return {
+              ...todo,
+              formattedDate // 添加格式化后的日期字段
+            };
+          });
+
+          this.setData({
+            filteredList: formattedData
+          }, () => {
+            // 这里是 setData 成功后的回调
+            console.log("filteredList", this.data.filteredList);
+          
+            // 确保 hasTodo 数据也更新
+            if (!formattedData || formattedData.length === 0) {
+              this.setData({
+                hasTodo: false
+              }, () => {
+                console.log("hasTodo", this.data.hasTodo);
+              });
+            } else {
+              this.setData({
+                hasTodo: true
+              }, () => {
+                console.log("hasTodo", this.data.hasTodo);
+              });
+            }
+          });          
+        } else {
+          console.error('Failed to get todos by end time:', res.result.errorMessage);
+        }
+      },
+      fail: err => {
+        console.error('Failed to call cloud function:', err);
+      }
+    });
+  }
+
 });
