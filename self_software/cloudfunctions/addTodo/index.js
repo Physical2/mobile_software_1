@@ -8,16 +8,18 @@ const todosCollection = db.collection('todos')
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  const { title, description, startTime, endTime, tag } = event
+  const { title, description, endTime, tag } = event
 
   try {
     // 添加待办事项到数据库
+    // const startTimeAsDate = new Date(startTime);
+    const endTimeAsDate = new Date(endTime);
+
     const result = await todosCollection.add({
       data: {
         title,
         description,
-        startTime,
-        endTime,
+        endTime: endTimeAsDate,
         tag,
         createAt: new Date(), // 自动添加创建时间
         status: false // 默认状态为 false

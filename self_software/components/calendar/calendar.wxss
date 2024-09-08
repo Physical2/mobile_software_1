@@ -30,7 +30,7 @@
   border-radius: 22rpx;
   font-size: 24rpx;
   line-height: 42rpx;
-  color: #868D8D;
+  color: #323333;
   text-align: center;
   margin-right: 6rpx;
 }
@@ -114,7 +114,7 @@
 .calendar .title .icon {
   padding: 0 16rpx;
   font-size: 32rpx;
-  color: #999;
+  color: rgb(92, 90, 90);
 }
 
 .calendar .title .open {
@@ -165,7 +165,7 @@
   line-height: 40rpx;
   padding: 0 22rpx;
   font-size: 28rpx;
-  color: #999;
+  color: rgb(85, 83, 83);
 }
 
 .calendar .calendar-week .calendar-week-item {

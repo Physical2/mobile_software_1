@@ -1,65 +1,98 @@
-<!--pages/todo/todo.wxml-->
-<view class="body">
-  <view class="signature">状态签名</view>
+<!-- <view class="container" > -->
+  <view class="body" style="background-image: url('http://sjeui0ii0.hn-bkt.clouddn.com/background.jpg?e=1725659356&token=m_bn1L1AownGExdIcnOr0BKfra4R2MrZwS7fF3ue:NqbFkgx79QZXz3EYiUUsp5M6nD4='); ">
+  <view class="signature" bind:tap="changesentences">{{currentsentences}}</view>
   <view class="head">
     <picker mode="selector" range="{{tags}}" bindchange="onTagChangeShow">
-      <view class="TD_label">当前选择: {{selectedTag}}</view>
+      <view class="TD_label">当前分类: {{selectedTag_1}}</view>
     </picker>
-    <view class="TD_add" bind:tap="openModal"> + 添加</view>
+    <view class="TD_add" bindtap="openModal"> + 添加</view>
   </view>
   <!-- 添加todo表单 -->
-  <view wx:if="{{showModal}}" class="modal">
+  <view wx:if="{{showModal}}" class="modal {{animationClass}}">
     <view class="modal-content">
-      <input placeholder="Title" value="{{title}}" bindinput="onTitleInput" />
-      <input placeholder="Description" value="{{description}}" bindinput="onDescriptionInput" />
-      <picker mode="date" bindchange="onStartTimeChange">
+      <input class="changeTitle" placeholder="事件名" value="{{title}}" bindinput="onTitleInput" />
+      <textarea class="changeDesc" placeholder="事件描述" value="{{description}}" bindinput="onDescriptionInput" ></textarea>
+
+      <!-- <picker mode="date" bindchange="onStartTimeChange">
         <view class="picker">
           Start Time: {{startTime}}
         </view>
-      </picker>
+      </picker> -->
       <picker mode="date" bindchange="onEndTimeChange">
         <view class="picker">
-          End Time: {{endTime}}
+          ddl: {{endTime}}
         </view>
       </picker>
+
       <picker mode="selector" range="{{tags}}" bindchange="onTagChange">
         <view class="picker">
-          Tag: {{selectedTag}}
+          分类: {{selectedTag}}
         </view>
       </picker>
-      <button bindtap="addTodo">Add Todo</button>
-      <button bindtap="closeModal">Cancel</button>
+      <view class="editButton">
+        <button class="editCancel" bindtap="closeModal">取 消</button>
+        <button class="editConfirm" bindtap="addTodo">添 加</button>
+        
+      </view>
+      
     </view>
   </view>
-  <!-- todo列表 -->
-  <view class="TD_list">
-    <!-- <view class="TD_timeHead">2024/09/01</view> -->
-    <view wx:if="{{!hasTodo}}">好像没有{{selectedTag}}方面的 ddl 哦~</view>
-    <view wx:if="{{hasTodo}}" class="TD_content" wx:for="{{todoList}}" wx:key="id">
-      <view wx:if="!{{item.status}}" class="TD_finish">
-        <image src="/Images/todo-no.png" ></image>
-      </view>
-      <view wx:else="{{item.status}}" class="TD_finish">
-        <image src="/Images/todo-yes.png"></image>
-      </view>
-      <view class="TD_time">{{item.formattedDate}}</view>
-      <view class="TD_title">{{item.title}}</view>
-      <!-- <view class="TD_change">修改</view> -->
-      <view class="TD_delete" bind:tap="deleteTodo" data-id="{{item._id}}">删除</view>
-    </view>
+  <!-- 修改todo表单 -->
+  <view wx:if="{{showEditModal}}" class="modal {{animationClass}}">
+    <view class="modal-content">
+      <input class="changeTitle" placeholder="事件名" value="{{editTitle}}" bindinput="onEditTitleInput" />
+      <textarea class="changeDesc" placeholder="没有描述哇……" value="{{editDescription}}" bindinput="onEditDescriptionInput" ></textarea>
+      <picker mode="date" value="{{editEndTime}}" bindchange="onEditEndTimeChange">
+        <view class="picker">
+          ddl: {{editEndTime}}
+        </view>
+      </picker>
 
-    <!-- <view class="TD_timeHead">2024/08/31</view> -->
-    <!-- <view class="TD_content">
-      <view wx:if="!{{isTodo}}" class="TD_finish">
+      <picker mode="selector" range="{{tags}}" bindchange="onEditTagChange">
+        <view class="picker">
+          分类: {{editSelectedTag}}
+        </view>
+      </picker>
+      <view class="editButton">
+          <button class="editCancel"  bindtap="closeEditModal">取 消</button>
+          <button class="editConfirm"  bindtap="changeTodo">修 改</button>
+      </view>
+    </view>
+  </view>
+  
+  <!-- todo列表 -->
+  <scoll-view class="TD_list">
+    <!-- <view class="TD_timeHead"> 2024/09/01</view> -->
+    <view wx:if="{{!hasTodo}}" class="null">好像没有{{selectedTag}}方面的 ddl 哦~</view>
+    <view wx:if="{{hasTodo}}" class="TD_content" wx:for="{{todoList}}" wx:key="id">
+    <!-- 展示详情todo -->
+      <view wx:if="{{selectedTodoId === item._id}}" class="showDetails {{animationClass}}">
+        <view class="back" bind:tap="unShowDetails">
+          <image src="/Images/arrow-back-circle-outline.png" class="detailImg"></image>
+          
+        </view>        
+          <view class="titleDetails">事件: {{item.title}}</view>
+          <view class="tagDetails">分类: {{item.tag}}</view>
+          <view class="desc">事件描述:</view>
+          <view class="descriptionDetails">{{item.description ?  item.description : '貌似没有添加描述哇……'}}</view>
+      </view>
+
+      <!-- todo列表 -->
+      <view wx:if="{{!item.status}}" class="TD_finish" bindtap="statusChange" data-id="{{item._id}}" data-status="{{item.status}}">
         <image src="/Images/todo-no.png"></image>
       </view>
-      <view wx:else="{{isTodo}}" class="TD_finish">
+      <view wx:if="{{item.status}}" class="TD_finish" bindtap="statusChange" data-id="{{item._id}}" data-status="{{item.status}}">
         <image src="/Images/todo-yes.png"></image>
       </view>
-      <view class="TD_time">{{todoTime}}</view>
-      <view class="TD_title">上课</view>
-      <view class="TD_delete">删除</view>
-    </view> -->
-
-  </view>
+      <!-- <view wx:if="{{item.status}}" class="completed-line"></view> -->
+      <view class="content " bind:tap="showDetails" data-id="{{item._id}}">
+        <view class="TD_time {{item.status ? 'greyed-out' : ''}}">{{item.formattedDate}}  </view>
+        <view class="TD_title {{item.status ? 'greyed-out' : ''}}">| {{item.title}}</view>
+        <view class="TD_change {{item.status ? 'greyed-out' : ''}}" catch:tap="openEditModal" data-id="{{item._id}}" data-title="{{item.title}}" data-description="{{item.description}}" data-editEndTime="{{item.endTime}}" data-tag="{{item.tag}}">修 改</view>
+        <view class="TD_delete {{item.status ? 'greyed-out' : ''}}" catch:tap="deleteTodo" data-id="{{item._id}}">删 除</view>
+      </view>
+    </view>
+  </scoll-view>
 </view>
+<!-- </view> -->
+

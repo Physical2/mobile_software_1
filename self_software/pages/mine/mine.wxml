@@ -1,23 +1,36 @@
-<!--pages/mine/mine.wxml-->
-<view class="body">
+
+<view class="body" style="background-image: url('http://sjeui0ii0.hn-bkt.clouddn.com/background.jpg?e=1725659356&token=m_bn1L1AownGExdIcnOr0BKfra4R2MrZwS7fF3ue:NqbFkgx79QZXz3EYiUUsp5M6nD4=')">
   <view class="user_total" open-type='getUserProfile' bindtap='getUserProfile'>
     <image class="user_avatar" src='{{userInfo.avatarUrl}}' mode='widthFix'/>
-    <view class="user_info">
+    <!-- <view class="user_info"> -->
       <view class="user_name">{{userInfo.nickName}}</view>
-      <view class="user_signature">去写一句自己喜欢的话吧~</view>
-    </view>
+    <!-- </view> -->
+  </view>
+  <view class="aboutUs" bind:tap="showAbout">
+    意见反馈
   </view>
 
-  <view class="settings">
-    <view class="set_info" >
-      修改签名
+  <view class="modal {{animationClass}}" wx:if="{{isShowAbout}}">
+  <view class="head">
+    <view class="back" bind:tap="unShowAbout">
+      <image src="/Images/arrow-back-circle-outline.png" class="detailImg"></image>
     </view>
-    <view class="set_style">
+    <view class="confirm" bind:tap="submitAdvice">确认</view>
+  </view>
+    
+    <textarea placeholder="有什么意见可以在这里告诉我~" class="inner " value="{{advice}}" bindinput="onAdviceInput"></textarea>
+  </view>
+
+  <!-- <view class="settings"> -->
+    <!-- <view class="set_info" >
+      修改签名
+    </view> -->
+    <!-- <view class="set_style">
       <view>修改主题颜色</view>
       <view>当前主题为： 白色</view>
     </view>
     <view class="aboutUs">
       关于我们
     </view>
-  </view>
+  </view> -->
 </view>
